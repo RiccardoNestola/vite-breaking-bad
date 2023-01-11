@@ -50,6 +50,8 @@ export default {
     </main>
 </template>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+main {
+    padding-bottom: 2rem;
+}
 </style>
