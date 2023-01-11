@@ -1,6 +1,41 @@
-
 <script>
+
+import { store } from "../store"
+import axios from 'axios';
+import AppCard from './AppCard.vue'
+
 export default {
+
+    components: {
+        AppCard,
+    },
+
+    data() {
+        return {
+            store,
+        }
+    },
+    methods: {
+        getCharacters() {
+            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0', {
+                params: {
+
+                }
+            })
+                .then((response) => {
+                    console.log(response.data);
+                    this.store.CharactersList = response.data.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
+    },
+
+    created() {
+        this.getCharacters();
+    }
 
 }
 </script>
@@ -8,24 +43,10 @@ export default {
 <template>
     <main>
         <div class="container mt-4">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col" v-for="n in 12">
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to
-                                additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+                <AppCard />
             </div>
-
         </div>
-
-
-
     </main>
 </template>
 
