@@ -3,11 +3,15 @@
 import { store } from "../store"
 import axios from 'axios';
 import AppCard from './AppCard.vue'
+/* import AppSearch from "./AppSearch.vue" */
+import AppSelect from "./AppSelect.vue"
 
 export default {
 
     components: {
         AppCard,
+        /*  AppSearch */
+        AppSelect
     },
 
     data() {
@@ -46,6 +50,10 @@ export default {
 <template>
     <main>
         <div class="container mt-4">
+            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+                <AppSelect @onSelect="getCharacters" />
+            </div>
+
             <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
                 <AppCard />
             </div>
