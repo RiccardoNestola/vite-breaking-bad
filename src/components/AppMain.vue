@@ -1,4 +1,4 @@
-<script>
+<script lang="js">
 
 import { store } from "../store"
 import axios from 'axios';
@@ -13,12 +13,15 @@ export default {
     data() {
         return {
             store,
+            ApiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0',
         }
     },
     methods: {
-        getCharacters() {
-            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0', {
+        getCharacters(selectedArchetype) {
+            axios.get(this.ApiUrl, {
                 params: {
+                    archetype: selectedArchetype
+
 
                 }
             })
